@@ -1,0 +1,63 @@
+
+# Local assistant/editor settings
+.claude/
+.codex/
+
+# Python/cache
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environments
+.env
+.venv/
+venv/
+env/
+
+# Logs and experiment outputs
+logs/
+outputs/
+eval_output/
+lightning_logs/
+wandb/
+checkpoints/
+*.log
+*.out
+*.err
+
+# Local benchmark/data assets
+simlingo_dataset/
+data/
+datasets/
+Bench2Drive/
+carla0915/
+carlaCache/
+
+# Large model artifacts
+*.ckpt
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.onnx
+*.engine
+*.trt
+
+# Archives and generated reports
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.xls
+*.xlsx
+
+# Keep the DeepSpeed pointer layout while excluding checkpoint payloads
+!pretrained/
+!pretrained/README.md
+!pretrained/checkpoints/
+!pretrained/checkpoints/best.ckpt/
+!pretrained/checkpoints/best.ckpt/latest
+pretrained/**/checkpoint/
