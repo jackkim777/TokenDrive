@@ -29,6 +29,7 @@ TokenDrive is an LM-free end-to-end autonomous driving policy. It predicts struc
 ├── pretrained/                  # Checkpoint placeholder layout
 ├── start_eval_tokendrive_v3.py  # Bench2Drive SLURM evaluation launcher
 ├── environment.yaml             # Conda environment
+├── licenses/                    # Third-party license texts
 ├── LICENSE
 └── THIRD_PARTY_NOTICES.md
 ```
@@ -153,4 +154,8 @@ Do not commit checkpoints, ONNX exports, datasets, CARLA assets, Bench2Drive ass
 
 ## License
 
-This repository is released under the Apache License 2.0. See [`LICENSE`](LICENSE) and [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
+This repository is released under the Apache License 2.0. See [`LICENSE`](LICENSE).
+
+TokenDrive reuses and modifies portions of the SimLingo codebase and follows its SimLingo-style data conventions. SimLingo is released under Apache License 2.0; the preserved license text is provided at [`licenses/SimLingo-LICENSE.txt`](licenses/SimLingo-LICENSE.txt), and attribution details are listed in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md). The upstream SimLingo repository is https://github.com/RenzKa/simlingo.
+
+The SimLingo dataset license is separate from the SimLingo code license. Dataset files are not redistributed in this repository.

@@ -1,6 +1,9 @@
 """
 TemplateDrive agent for Bench2Drive evaluation.
 Based on agent_simlingo_base.py, adapted for InternViT-300M + TokenDriveModel.
+
+Portions adapted from SimLingo evaluation agent code (Apache-2.0) and modified
+for TokenDrive.
 """
 
 import json

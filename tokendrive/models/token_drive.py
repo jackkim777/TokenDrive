@@ -1,5 +1,8 @@
 """
 TokenDriveModel: LM-free vision encoder + ACM conditioning + Context/Lat/Lon heads.
+
+Portions adapted from SimLingo model-training interfaces (Apache-2.0) and
+modified for TokenDrive.
 """
 from typing import Dict, List, Optional, Tuple
 
@@ -845,5 +848,4 @@ class TokenDriveModel(pl.LightningModule):
             "optimizer": optimizer,
             "lr_scheduler": {"scheduler": scheduler, "frequency": 1, "interval": "step"},
         }
-
 

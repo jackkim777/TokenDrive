@@ -4,7 +4,14 @@ TokenDrive builds on public autonomous-driving research code and benchmark tooli
 
 ## SimLingo
 
-Parts of the training and data-loading stack are adapted from SimLingo-style code and data conventions. The local reference copy used while preparing this release is licensed under Apache License 2.0.
+Parts of the training, data-loading, and Bench2Drive agent stack are adapted from or interface with SimLingo-style code and data conventions.
+
+- Upstream repository: https://github.com/RenzKa/simlingo
+- Upstream code license: Apache License 2.0
+- Preserved license text: [`licenses/SimLingo-LICENSE.txt`](licenses/SimLingo-LICENSE.txt)
+- Upstream `NOTICE`: no separate `NOTICE` file was present in the repository root when this release package was prepared.
+
+The SimLingo dataset license is separate from the SimLingo code license. TokenDrive does not redistribute the SimLingo dataset; users should obtain data from the original source and follow the applicable dataset terms.
 
 ## Bench2Drive, CARLA, Leaderboard, and Scenario Runner
 

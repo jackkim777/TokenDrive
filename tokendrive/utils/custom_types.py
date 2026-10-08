@@ -1,3 +1,5 @@
+# Portions adapted from SimLingo custom type definitions (Apache-2.0) and
+# modified for TokenDrive.
 from typing import List, NamedTuple, Optional
 import torch
 from torch import Tensor

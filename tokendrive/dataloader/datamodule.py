@@ -1,5 +1,8 @@
 """
 DataModule for TokenDriveModel.
+
+Portions adapted from SimLingo data-module code (Apache-2.0) and modified
+for TokenDrive.
 """
 import itertools
 from typing import List

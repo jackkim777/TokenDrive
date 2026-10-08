@@ -1,5 +1,8 @@
 """
 TokenDriveDataModuleV3: extends V1 datamodule with prev_route_wps collation.
+
+Portions adapted from SimLingo data-module code (Apache-2.0) and modified
+for TokenDrive.
 """
 import numpy as np
 import torch

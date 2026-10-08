@@ -1,6 +1,9 @@
 """
 TokenDriveModelV3: V1 (WP64, ACM) + Smoothness Loss only.
 
+Portions adapted from SimLingo model-training interfaces (Apache-2.0) and
+modified for TokenDrive.
+
 Changes vs V1:
   - 2nd-order finite-difference penalty on speed_wps & route_wps (jerk suppression)
   - No prev_route_wps / consistency loss (caused degradation in initial V3 experiments)
@@ -168,4 +171,3 @@ class TokenDriveModelV3(TokenDriveModel):
         for k, v in output.loss_averages.items():
             self.log(f"val_losses/{k}", v.detach(), sync_dist=True)
         return {"loss": output.loss}
-

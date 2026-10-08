@@ -1,6 +1,9 @@
 """
 TokenDriveModelV2: Three changes vs TokenDriveModel.
 
+Portions adapted from SimLingo model-training interfaces (Apache-2.0) and
+modified for TokenDrive.
+
 1. No route_wp_loss warmup: route_wp_loss_weight used from epoch 0.
 2. route_wps predicted from raw V (not V_mod). speed_wps still uses V_mod.
 3. num_route_wps default = 20 (overridable in config/experiment yaml).
@@ -179,4 +182,3 @@ class TokenDriveModelV2(TokenDriveModel):
             loss_dict["route_wp_loss"] = (route_wp_loss, ones)
 
         return summarise_losses(loss_dict, self._loss_weights())
-

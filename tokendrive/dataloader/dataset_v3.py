@@ -3,6 +3,9 @@ TokenDriveCARLADataV3: extends V1 dataset with prev_route_wps loading.
 
 prev_route_wps: previous frame's route_adjusted transformed into the
 current ego coordinate frame (via ego_matrix).
+
+Portions adapted from SimLingo data-loading code (Apache-2.0) and modified
+for TokenDrive.
 """
 import gzip
 import os

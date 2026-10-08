@@ -1,3 +1,8 @@
+"""Evaluation utility functions.
+
+Portions adapted from SimLingo evaluation utilities (Apache-2.0) and modified
+for TokenDrive.
+"""
 
 import numpy as np
 import math
@@ -88,4 +93,3 @@ def get_camera_extrinsics():
     extrinsics = torch.tensor(extrinsics, dtype=torch.float32)
 
     return extrinsics
-

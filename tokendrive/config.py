@@ -1,3 +1,5 @@
+# Portions adapted from SimLingo training configs (Apache-2.0) and modified
+# for TokenDrive.
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional, Tuple, Union
 import time

@@ -1,5 +1,8 @@
 """
 Dataset that extends BaseDataset with context-factor + action-token loading.
+
+Portions adapted from SimLingo data-loading code (Apache-2.0) and modified
+for TokenDrive.
 """
 import gzip
 import os

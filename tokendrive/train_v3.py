@@ -1,3 +1,8 @@
+"""TokenDrive training entry point.
+
+Portions adapted from SimLingo training scripts (Apache-2.0) and modified for
+TokenDrive.
+"""
 import os
 import sys
 

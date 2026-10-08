@@ -1,3 +1,8 @@
+"""Generate TokenDrive template IDs from SimLingo-style commentary data.
+
+Portions adapted from SimLingo data-generation conventions (Apache-2.0) and
+modified for TokenDrive structured token labels.
+"""
 import os
 import glob
 import gzip

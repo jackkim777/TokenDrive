@@ -1,3 +1,9 @@
+"""Base evaluation config.
+
+Portions adapted from SimLingo evaluation config code (Apache-2.0) and modified
+for TokenDrive.
+"""
+
 class GlobalConfig:
     def __init__(self):
         """ base architecture configurations """

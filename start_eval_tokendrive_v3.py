@@ -1,3 +1,8 @@
+"""Bench2Drive evaluation launcher.
+
+Portions adapted from SimLingo evaluation scripts (Apache-2.0) and modified
+for TokenDrive.
+"""
 # %%
 import os
 import subprocess
