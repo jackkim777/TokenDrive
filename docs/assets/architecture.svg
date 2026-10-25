@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="354" viewBox="0 0 1200 354" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">TokenDrive inference overview</title>
+  <desc id="desc">An image encoder provides visual features and decision tokens. Command and speed also condition the ACM. Modulated features produce speed and route waypoints for vehicle control. This is a conceptual overview.</desc>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="m0 0 8 4-8 4" fill="#64748B"/></marker></defs>
+  <rect x="1" y="1" width="1198" height="352" rx="20" fill="#F8FAFC" stroke="#E2E8F0"/>
+  <g stroke="#64748B" stroke-width="2" marker-end="url(#arrow)">
+    <path d="M180 179h35"/><path d="M393 179h39"/><path d="M649 179h37"/><path d="M864 179h34"/><path d="M1070 179h30"/>
+    <path d="M304 221v71h471v-71"/><path d="M541 104V77h234v60"/>
+  </g>
+  <g font-family="Segoe UI,Arial,sans-serif">
+    <text x="32" y="38" fill="#64748B" font-size="11" font-weight="700" letter-spacing="2">INFERENCE OVERVIEW</text>
+    <rect x="30" y="137" width="150" height="84" rx="12" fill="#FFFFFF" stroke="#CBD5E1"/>
+    <text x="105" y="173" text-anchor="middle" fill="#0F172A" font-size="17" font-weight="600">Front-view</text>
+    <text x="105" y="197" text-anchor="middle" fill="#475569" font-size="15">image</text>
+    <rect x="215" y="137" width="178" height="84" rx="12" fill="#EFF6FF" stroke="#93C5FD"/>
+    <text x="304" y="173" text-anchor="middle" fill="#1E40AF" font-size="17" font-weight="600">InternViT-300M</text>
+    <text x="304" y="197" text-anchor="middle" fill="#475569" font-size="14">Visual features</text>
+    <rect x="432" y="104" width="217" height="150" rx="12" fill="#FFFFFF" stroke="#CBD5E1"/>
+    <text x="452" y="134" fill="#0F172A" font-size="17" font-weight="600">Decision tokens</text>
+    <g font-size="14" fill="#475569"><text x="452" y="163">Speed / route context</text><text x="452" y="192">Lateral action</text><text x="452" y="221">Longitudinal action</text></g>
+    <rect x="686" y="137" width="178" height="84" rx="12" fill="#CCFBF1" stroke="#5EEAD4"/>
+    <text x="775" y="173" text-anchor="middle" fill="#115E59" font-size="20" font-weight="700">ACM</text>
+    <text x="775" y="197" text-anchor="middle" fill="#115E59" font-size="14">FiLM conditioning</text>
+    <rect x="898" y="116" width="172" height="126" rx="12" fill="#FFFFFF" stroke="#CBD5E1"/>
+    <text x="984" y="148" text-anchor="middle" fill="#0F172A" font-size="17" font-weight="600">Waypoints</text>
+    <text x="984" y="181" text-anchor="middle" fill="#475569" font-size="14">10 speed points</text>
+    <text x="984" y="210" text-anchor="middle" fill="#475569" font-size="14">64 route points</text>
+    <rect x="1100" y="137" width="73" height="84" rx="12" fill="#0F172A"/>
+    <text x="1136" y="184" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="600">Control</text>
+    <text x="648" y="65" text-anchor="middle" fill="#475569" font-size="13">High-level command + ego speed</text>
+    <text x="540" y="315" text-anchor="middle" fill="#64748B" font-size="13">Visual features to be modulated</text>
+  </g>
+</svg>

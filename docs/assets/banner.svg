@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="400" viewBox="0 0 1280 400" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">TokenDrive</title>
+  <desc id="desc">Real-Time Closed-Loop Driving with Structured Decision Tokens. A navy banner with a stylized road and decision tokens.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1280" y2="400" gradientUnits="userSpaceOnUse"><stop stop-color="#0B1224"/><stop offset="1" stop-color="#142D46"/></linearGradient>
+    <linearGradient id="road" x1="900" y1="120" x2="1000" y2="400" gradientUnits="userSpaceOnUse"><stop stop-color="#2DD4BF" stop-opacity=".08"/><stop offset="1" stop-color="#2DD4BF" stop-opacity=".28"/></linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" stroke="#94A3B8" stroke-opacity=".06"/></pattern>
+  </defs>
+  <rect width="1280" height="400" rx="24" fill="url(#bg)"/>
+  <rect width="1280" height="400" rx="24" fill="url(#grid)"/>
+  <path d="M764 400 925 112H963L1156 400Z" fill="url(#road)"/>
+  <path d="m764 400 161-288m38 0 193 288" stroke="#5EEAD4" stroke-opacity=".35" stroke-width="2"/>
+  <path d="m944 133 18 267" stroke="#5EEAD4" stroke-opacity=".45" stroke-width="3" stroke-dasharray="14 18"/>
+  <path d="M912 358c-8-62 54-89 35-156" stroke="#5EEAD4" stroke-width="4" stroke-linecap="round"/>
+  <g fill="#99F6E4"><circle cx="912" cy="358" r="5"/><circle cx="925" cy="306" r="5"/><circle cx="946" cy="256" r="5"/><circle cx="947" cy="202" r="5"/></g>
+  <g font-family="Segoe UI,Arial,sans-serif">
+    <rect x="64" y="58" width="205" height="29" rx="14.5" fill="#2DD4BF" fill-opacity=".12" stroke="#2DD4BF" stroke-opacity=".3"/>
+    <text x="82" y="78" fill="#5EEAD4" font-size="12" font-weight="600" letter-spacing="2">STRUCTURED DECISIONS</text>
+    <text x="60" y="185" fill="#F8FAFC" font-size="88" font-weight="700" letter-spacing="-4">Token<tspan fill="#5EEAD4">Drive</tspan></text>
+    <text x="64" y="233" fill="#CBD5E1" font-size="23">Real-Time Closed-Loop Driving</text>
+    <text x="64" y="266" fill="#CBD5E1" font-size="23">with Structured Decision Tokens</text>
+    <text x="64" y="341" fill="#94A3B8" font-size="13" letter-spacing="2">VISION → DECISIONS → WAYPOINTS → CONTROL</text>
+    <rect x="1025" y="76" width="179" height="43" rx="10" fill="#18394A" stroke="#2DD4BF" stroke-opacity=".4"/>
+    <text x="1043" y="103" fill="#99F6E4" font-size="14" font-weight="600">LATERAL ACTION</text>
+    <rect x="1025" y="134" width="179" height="43" rx="10" fill="#1C304D" stroke="#60A5FA" stroke-opacity=".4"/>
+    <text x="1043" y="161" fill="#BFDBFE" font-size="14" font-weight="600">SPEED CONTEXT</text>
+  </g>
+</svg>
