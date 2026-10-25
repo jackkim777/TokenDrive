@@ -122,6 +122,8 @@ eval_output/tokendrive_v3/bench2drive/<seed>/
 
 ## 5. Troubleshooting
 
+For physical vehicle deployment, see the separate [DRIVE Pegasus v3 guide](../deployment/pegasus/README.md). It covers the C++/ONNX runtime and device SDKs; the Bench2Drive launcher above is for simulation.
+
 | Symptom | Check |
 | :--- | :--- |
 | `No module named simlingo_base_training` | Add the upstream SimLingo root to `PYTHONPATH` in the active shell. |

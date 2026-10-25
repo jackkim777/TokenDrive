@@ -18,6 +18,7 @@
   <a href="#overview">Overview</a> &middot;
   <a href="#getting-started">Getting started</a> &middot;
   <a href="docs/USAGE.md">Training & evaluation</a> &middot;
+  <a href="deployment/pegasus/README.md">Real vehicle</a> &middot;
   <a href="tokendrive/ablation/README.md">Ablations</a> &middot;
   <a href="#repository-map">Code map</a>
 </p>
@@ -40,6 +41,7 @@ TokenDrive is an **LM-free end-to-end autonomous driving policy**. Given a front
 | **Waypoint prediction** | 10 short-horizon speed waypoints and 64 long-horizon route waypoints. |
 | **V3 training** | Second-order waypoint smoothness losses for speed and route predictions. |
 | **Closed-loop control** | CARLA agent and a SLURM launcher for Bench2Drive evaluation. |
+| **Real-vehicle deployment** | Selected v3 C++ inference sources for NVIDIA DRIVE Pegasus, with CUDA preprocessing and CAN-log analysis. |
 
 The diagram summarizes the inference flow; see [`token_drive.py`](tokendrive/models/token_drive.py) and [`token_drive_v3.py`](tokendrive/models/token_drive_v3.py) for the implementation. Encoder freezing is configurable; the checked-in encoder default is `freeze: false`.
 
@@ -62,6 +64,7 @@ TokenDrive also imports the external `simlingo_base_training` package. Follow th
 | Train TokenDrive V3 | [Training](docs/USAGE.md#3-training) | [`train_v3.py`](tokendrive/train_v3.py) |
 | Load model weights | [Checkpoint layout](pretrained/README.md) | `pretrained/checkpoints/best.ckpt/` |
 | Run closed-loop evaluation | [Evaluation](docs/USAGE.md#4-closed-loop-evaluation) | [`start_eval_tokendrive_v3.py`](start_eval_tokendrive_v3.py) |
+| Deploy on DRIVE Pegasus | [Real-vehicle guide](deployment/pegasus/README.md) | [`inference_v3.cpp`](deployment/pegasus/inference_v3.cpp) |
 | Study token conditioning | [Ablations](tokendrive/ablation/README.md) | [`compute_delta_wp.py`](tokendrive/ablation/compute_delta_wp.py) |
 
 **Artifact availability.** This repository contains source code and configuration files. Checkpoint binaries, datasets, CARLA, and Bench2Drive assets are external. A TokenDrive checkpoint download URL has not yet been configured in this repository; see [pretrained weights](pretrained/README.md) for the expected files.
@@ -81,6 +84,7 @@ TokenDrive/
 |   `-- train_v3.py          # Main training entry point
 |-- team_code/               # CARLA agent, planners, and controllers
 |-- pretrained/              # Checkpoint layout; weights excluded
+|-- deployment/pegasus/      # Real-vehicle v3 inference and analysis sources
 |-- docs/                    # Setup guide and repository visuals
 |-- start_eval_tokendrive_v3.py
 `-- environment.yaml
