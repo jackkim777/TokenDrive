@@ -1,0 +1,15 @@
+# Device builds, local calibration/tuning, model payloads, and recordings.
+build*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+inference_v3
+benchmark_onnx
+save_frames/
+hf_cache/
+tune_defaults.cfg
+*.csv
+*.ppm
+*.png
+*.jsonl

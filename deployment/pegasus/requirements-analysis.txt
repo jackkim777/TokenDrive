@@ -1,0 +1,4 @@
+# Offline CAN-log analysis only; separate from the training environment.
+numpy
+scipy
+matplotlib

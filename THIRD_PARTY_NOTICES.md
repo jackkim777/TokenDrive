@@ -21,6 +21,12 @@ The evaluation agent targets CARLA 0.9.15 and the Bench2Drive evaluation stack. 
 
 TokenDrive uses `OpenGVLab/InternViT-300M-448px` as the vision encoder through the Hugging Face/Transformers ecosystem. Model weights are downloaded separately according to the upstream model license.
 
+## Real-vehicle deployment dependencies
+
+The selected v3 sources in `deployment/pegasus/` interface with ONNX Runtime, NVIDIA CUDA and DriveWorks, GLFW, EGL, GLESv2, X11, and Linux SocketCAN. Their SDKs, runtime libraries, and model payloads are not redistributed in this repository and remain subject to their respective terms.
+
+The small `nvmedia_stubs/` headers are local build shims from the vehicle source snapshot. They do not provide an NvMedia runtime or replace the NVIDIA SDK. See `deployment/pegasus/README.md` for the archived platform and build requirements.
+
 ## PyTorch, PyTorch Lightning, DeepSpeed, Hydra, Transformers, and Other Dependencies
 
 Runtime dependencies are listed in [`environment.yaml`](environment.yaml). Users should review upstream package licenses when redistributing modified environments or binaries.

@@ -1,0 +1,107 @@
+{
+  "description": "Selected vehicle deployment sources. Original files were read only; hashes identify the source snapshot and published copy.",
+  "files": [
+    {
+      "file": "inference_v3.cpp",
+      "source_sha256": "75d53a0edc48d58cb71faa6ab65a65171e6e50d4b425a0cb3ccb8d703b62dd6d",
+      "published_sha256": "bf05b0ccacd1893c2f7af993d412fa1c03e0330e4c1ae40c6ba28a3c8d7873be",
+      "changes": "TokenDrive naming, build examples, v3 help text, and relative recording path"
+    },
+    {
+      "file": "preprocess_cuda.cu",
+      "source_sha256": "66c5232d9dc9f3bd932279300a0619beaf71bb3eb818693210d936b8abd6e210",
+      "published_sha256": "66c5232d9dc9f3bd932279300a0619beaf71bb3eb818693210d936b8abd6e210",
+      "changes": "Byte-identical copy"
+    },
+    {
+      "file": "preprocess_cuda.cuh",
+      "source_sha256": "177b5a670d6e3a5834f9b25a6fc92d12dab686c4a0233608e4092e9dbcf2acad",
+      "published_sha256": "177b5a670d6e3a5834f9b25a6fc92d12dab686c4a0233608e4092e9dbcf2acad",
+      "changes": "Byte-identical copy"
+    },
+    {
+      "file": "benchmark_onnx.cpp",
+      "source_sha256": "d58b11ddcbe5af8934def879048f6f0a9f6267d8d2478f7587186919fbcece46",
+      "published_sha256": "ea81775fe030732de782e87a0d0c9bde60a0f280f5736fa3899b6f2a2d078d81",
+      "changes": "TokenDrive naming and build examples"
+    },
+    {
+      "file": "eval_metrics.py",
+      "source_sha256": "f5750a4294ee3116d96b3416d5b4a36f2d85b496a3d37685674f4748913c0d37",
+      "published_sha256": "f5750a4294ee3116d96b3416d5b4a36f2d85b496a3d37685674f4748913c0d37",
+      "changes": "Byte-identical copy"
+    },
+    {
+      "file": "can_smoothness.py",
+      "source_sha256": "512c831acaef2c7a72aa86180a39c113b5c42a89d1b7cb955a13b30cfd2b2efa",
+      "published_sha256": "512c831acaef2c7a72aa86180a39c113b5c42a89d1b7cb955a13b30cfd2b2efa",
+      "changes": "Byte-identical copy"
+    },
+    {
+      "file": "nvmedia_stubs/nvmedia_2d.h",
+      "source_sha256": "dfccd118ccbc323a93a55d6f451a52a1e77a831a7b51868bf8733788a8222a27",
+      "published_sha256": "dfccd118ccbc323a93a55d6f451a52a1e77a831a7b51868bf8733788a8222a27",
+      "changes": "Byte-identical copy"
+    },
+    {
+      "file": "nvmedia_stubs/nvmedia_core.h",
+      "source_sha256": "c6023509b517da5d9a6a0d049db0214f66d73548de86ad69f88178e3f0bff0a4",
+      "published_sha256": "c6023509b517da5d9a6a0d049db0214f66d73548de86ad69f88178e3f0bff0a4",
+      "changes": "Byte-identical copy"
+    },
+    {
+      "file": "nvmedia_stubs/nvmedia_image.h",
+      "source_sha256": "99895419f0a0fd951e0740ef70344f6f7ac02e1265d289566952ce48faec6acf",
+      "published_sha256": "99895419f0a0fd951e0740ef70344f6f7ac02e1265d289566952ce48faec6acf",
+      "changes": "Byte-identical copy"
+    },
+    {
+      "file": "nvmedia_stubs/nvmedia_ipp.h",
+      "source_sha256": "295d48f909cc5cf727f149a273b7d5aec6d4442d6d66a8479b8b0f9b9c15fb76",
+      "published_sha256": "295d48f909cc5cf727f149a273b7d5aec6d4442d6d66a8479b8b0f9b9c15fb76",
+      "changes": "Byte-identical copy"
+    },
+    {
+      "file": "nvmedia_stubs/nvmedia_surface.h",
+      "source_sha256": "f301052731416ec716d091456cdfc02953efdeeb2d3d2a3199a98cc7c72aff50",
+      "published_sha256": "f301052731416ec716d091456cdfc02953efdeeb2d3d2a3199a98cc7c72aff50",
+      "changes": "Byte-identical copy"
+    },
+    {
+      "file": "nvmedia_stubs/nvmedia_vcp.h",
+      "source_sha256": "76efd3c6e0712ed2b96c03085ae4d60f985a84efddaa233f78339c5ece59c1c2",
+      "published_sha256": "76efd3c6e0712ed2b96c03085ae4d60f985a84efddaa233f78339c5ece59c1c2",
+      "changes": "Byte-identical copy"
+    },
+    {
+      "file": "nvmedia_stubs/nvmedia_vep.h",
+      "source_sha256": "f5ce129fc596b36072cd65848934fb4c38a4173685bdb51f47120895143e04f2",
+      "published_sha256": "f5ce129fc596b36072cd65848934fb4c38a4173685bdb51f47120895143e04f2",
+      "changes": "Byte-identical copy"
+    },
+    {
+      "file": "nvmedia_stubs/nvmedia_viddec.h",
+      "source_sha256": "bac29d2fdaab539ba0a1f05ac07e181d826875d739ecbdc7c1642a3f7d81e0a7",
+      "published_sha256": "bac29d2fdaab539ba0a1f05ac07e181d826875d739ecbdc7c1642a3f7d81e0a7",
+      "changes": "Byte-identical copy"
+    },
+    {
+      "file": "nvmedia_stubs/nvmedia_video.h",
+      "source_sha256": "a9f096c09b09eb08ece93e16f1a707eb797087985a55be965c4ecc0c2815e937",
+      "published_sha256": "a9f096c09b09eb08ece93e16f1a707eb797087985a55be965c4ecc0c2815e937",
+      "changes": "Byte-identical copy"
+    },
+    {
+      "file": "nvmedia_stubs/nvmedia_vmp.h",
+      "source_sha256": "f300f82a47028cce1c6a3ec84a403b6ea4b277bbda86874aef415a6facf9f82a",
+      "published_sha256": "f300f82a47028cce1c6a3ec84a403b6ea4b277bbda86874aef415a6facf9f82a",
+      "changes": "Byte-identical copy"
+    },
+    {
+      "file": "nvmedia_stubs/nvmedia_vop.h",
+      "source_sha256": "76dc34037ac049aa898f2c56c72df2f34989e7a7707140761ea1b2a0b4910a75",
+      "published_sha256": "76dc34037ac049aa898f2c56c72df2f34989e7a7707140761ea1b2a0b4910a75",
+      "changes": "Byte-identical copy"
+    }
+  ]
+}
