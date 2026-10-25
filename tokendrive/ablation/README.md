@@ -1,4 +1,7 @@
-# TokenDrive Ablation Study
+# TokenDrive ablation study
+
+[Back to TokenDrive](../../README.md) | [Setup and evaluation](../../docs/USAGE.md)
+
 
 ## Structure
 
@@ -40,7 +43,7 @@ tokendrive/config/experiment/
 Run all ablations from the repository root.
 
 ```bash
-cd JCDE
+cd TokenDrive
 
 # A1: No-ACM
 python tokendrive/train_v3.py experiment=ablate_A1_no_acm \
@@ -67,27 +70,22 @@ python tokendrive/train_v3.py experiment=ablate_C2_no_grad_mask \
     name=ablate_C2_no_grad_mask_seed42 seed=42
 ```
 
-With SLURM:
-```bash
-sbatch train_td_seed42.sh  # replace the experiment= parameter with one of the above
-```
+For cluster training, wrap the command in a job script configured for your SLURM resources. No training SLURM script is bundled in this repository.
 
 ---
 
 ## Evaluation Commands (Bench2Drive Closed-Loop)
 
-After training, update the checkpoint path and `run_name` in `start_eval_tokendrive_v3.py`:
+After training, select the checkpoint and a separate output directory through environment variables. The launcher does not parse `--checkpoint` or `--name` flags.
 
 ```bash
-# Example: evaluate A1 ablation
-python start_eval_tokendrive_v3.py \
-    --checkpoint results/ablate_A1_no_acm_seed42/last.ckpt \
-    --name ablate_A1_no_acm_seed42
-
-# Merge results
-python Bench2Drive/tools/merge_route_json.py \
-    --result_dir eval_results/ablate_A1_no_acm_seed42/
+export TOKENDRIVE_CHECKPOINT=/path/to/ablate_A1_no_acm_seed42/last.ckpt
+export TOKENDRIVE_EVAL_OUTPUT="$PWD/eval_results/ablate_A1_no_acm_seed42"
+printf '1\n' > max_num_jobs.txt
+python start_eval_tokendrive_v3.py
 ```
+
+Follow the [evaluation prerequisites](../../docs/USAGE.md#4-closed-loop-evaluation) first. The launcher uses SLURM and writes per-route results under `tokendrive_v3/bench2drive/<seed>/res/` inside the selected output directory. Merge and score these with the tools supplied by your Bench2Drive version before aggregation.
 
 ---
 

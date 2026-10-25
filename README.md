@@ -1,161 +1,95 @@
-# TokenDrive
+<p align="center">
+  <img src="docs/assets/banner.svg" alt="TokenDrive - Real-Time Closed-Loop Driving with Structured Decision Tokens" width="100%">
+</p>
 
-Official code release for **TokenDrive: Real-Time Closed-Loop Driving with Structured Decision Tokens**.
+<p align="center">
+  <strong>Real-Time Closed-Loop Driving with Structured Decision Tokens</strong><br>
+  A vision-based policy connecting structured decisions to waypoint prediction.
+</p>
 
-TokenDrive is an LM-free end-to-end autonomous driving policy. It predicts structured context and action tokens from a front-view image, high-level command, and ego speed, then conditions waypoint prediction through an Action Conditioning Module (ACM). The online control path does not use autoregressive language generation.
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache_2.0-2563eb?style=flat-square" alt="License: Apache 2.0"></a>
+  <img src="https://img.shields.io/badge/Vision-InternViT_300M-0f766e?style=flat-square" alt="Vision encoder: InternViT-300M">
+  <img src="https://img.shields.io/badge/Evaluation-Bench2Drive-475569?style=flat-square" alt="Evaluation target: Bench2Drive">
+  <img src="https://img.shields.io/badge/Simulator-CARLA_0.9.15-475569?style=flat-square" alt="Simulator: CARLA 0.9.15">
+</p>
 
-## Highlights
+<p align="center">
+  <a href="#overview">Overview</a> &middot;
+  <a href="#getting-started">Getting started</a> &middot;
+  <a href="docs/USAGE.md">Training & evaluation</a> &middot;
+  <a href="tokendrive/ablation/README.md">Ablations</a> &middot;
+  <a href="#repository-map">Code map</a>
+</p>
 
-- Frozen **InternViT-300M-448px** vision encoder
-- Structured scene tokens for lateral action, longitudinal action, speed context, and route context
-- ACM with FiLM modulation for token-conditioned waypoint prediction
-- 10 short-horizon speed waypoints and 64 long-horizon route waypoints
-- V3 training with second-order waypoint smoothness losses
-- Bench2Drive closed-loop evaluation agent
+---
 
-## Repository Structure
+## Overview
 
-```text
-.
-├── tokendrive/                  # Model, training, data loading, and analysis code
-│   ├── train_v3.py              # Main training entry point
-│   ├── config/                  # Hydra configs
-│   ├── models/                  # TokenDrive model definitions
-│   ├── dataloader/              # SimLingo-style dataset and datamodule
-│   ├── data_generation/         # Structured token label generation scripts
-│   ├── ablation/                # Ablation and intervention analysis scripts
-│   └── tools/                   # Lightweight dataset/token summary utilities
-├── team_code/                   # Bench2Drive/CARLA evaluation agent
-├── pretrained/                  # Checkpoint placeholder layout
-├── start_eval_tokendrive_v3.py  # Bench2Drive SLURM evaluation launcher
-├── environment.yaml             # Conda environment
-├── licenses/                    # Third-party license texts
-├── LICENSE
-└── THIRD_PARTY_NOTICES.md
-```
+TokenDrive is an **LM-free end-to-end autonomous driving policy**. Given a front-view image, a high-level command, and ego speed, it predicts structured context and action tokens. An **Action Conditioning Module (ACM)** uses those decisions to modulate visual features through FiLM before waypoint prediction. The online control path does not use autoregressive language generation.
 
-## Installation
+<p align="center">
+  <img src="docs/assets/architecture.svg" alt="Inference overview: an image encoder provides visual features and decision tokens; ACM uses the decisions, command, and speed to condition waypoint prediction for vehicle control." width="100%">
+</p>
+
+| Component | Role |
+| :--- | :--- |
+| **Visual representation** | InternViT-300M-448px with projected patch features. |
+| **Structured decisions** | Speed context, route context, lateral action, and longitudinal action tokens. |
+| **Action conditioning** | FiLM modulation connects predicted decisions to waypoint features. |
+| **Waypoint prediction** | 10 short-horizon speed waypoints and 64 long-horizon route waypoints. |
+| **V3 training** | Second-order waypoint smoothness losses for speed and route predictions. |
+| **Closed-loop control** | CARLA agent and a SLURM launcher for Bench2Drive evaluation. |
+
+The diagram summarizes the inference flow; see [`token_drive.py`](tokendrive/models/token_drive.py) and [`token_drive_v3.py`](tokendrive/models/token_drive_v3.py) for the implementation. Encoder freezing is configurable; the checked-in encoder default is `freeze: false`.
+
+## Getting started
+
+The supplied Conda environment targets **Linux / NVIDIA CUDA**. Use a Linux host or an appropriately configured WSL environment.
 
 ```bash
-git clone https://github.com/<USER_OR_ORG>/TokenDrive.git
+git clone https://github.com/jackkim777/TokenDrive.git
 cd TokenDrive
 conda env create -f environment.yaml
 conda activate tokendrive
 ```
 
-The evaluation scripts additionally require CARLA 0.9.15 and the Bench2Drive benchmark assets.
+TokenDrive also imports the external `simlingo_base_training` package. Follow the [setup guide](docs/USAGE.md#1-environment-and-upstream-code) to make it available before training.
 
-## Data Preparation
+| Task | Guide | Entry point |
+| :--- | :--- | :--- |
+| Prepare structured labels | [Data preparation](docs/USAGE.md#2-data-preparation) | [`slots_generator.py`](tokendrive/data_generation/slots_generator.py) |
+| Train TokenDrive V3 | [Training](docs/USAGE.md#3-training) | [`train_v3.py`](tokendrive/train_v3.py) |
+| Load model weights | [Checkpoint layout](pretrained/README.md) | `pretrained/checkpoints/best.ckpt/` |
+| Run closed-loop evaluation | [Evaluation](docs/USAGE.md#4-closed-loop-evaluation) | [`start_eval_tokendrive_v3.py`](start_eval_tokendrive_v3.py) |
+| Study token conditioning | [Ablations](tokendrive/ablation/README.md) | [`compute_delta_wp.py`](tokendrive/ablation/compute_delta_wp.py) |
 
-Prepare the SimLingo-style dataset so that it contains `data/simlingo` and `commentary/simlingo` under one dataset root:
+**Artifact availability.** This repository contains source code and configuration files. Checkpoint binaries, datasets, CARLA, and Bench2Drive assets are external. A TokenDrive checkpoint download URL has not yet been configured in this repository; see [pretrained weights](pretrained/README.md) for the expected files.
 
-```text
-<SIMLINGO_DATASET_ROOT>/
-├── data/simlingo/
-└── commentary/simlingo/
-```
-
-Generate TokenDrive structured labels:
-
-```bash
-export SIMLINGO_DATASET_ROOT=/path/to/simlingo_dataset
-export TOKENDRIVE_REPO_ROOT=$PWD
-
-python tokendrive/data_generation/slots_generator.py
-python tokendrive/data_generation/template_id_generator.py
-```
-
-The training config reads the dataset path from `SIMLINGO_DATASET_ROOT` by default, or from the Hydra override `data_module.data_path=...`.
-
-## Training
-
-Single-node training entry point:
-
-```bash
-python tokendrive/train_v3.py experiment=td_v3 \
-    data_module.data_path=/path/to/simlingo_dataset
-```
-
-Useful overrides:
-
-```bash
-python tokendrive/train_v3.py experiment=td_v3 \
-    data_module.data_path=/path/to/simlingo_dataset \
-    data_module.batch_size=8 \
-    data_module.num_workers=4 \
-    gpus=8 \
-    name=td_v3_smooth_seed42
-```
-
-The main config is [`tokendrive/config/experiment/td_v3.yaml`](tokendrive/config/experiment/td_v3.yaml).
-
-## Pretrained Checkpoint
-
-Large model files are not stored in this GitHub repository. Download the released checkpoint from Hugging Face:
-
-```bash
-pip install huggingface_hub
-python - <<'PY'
-from huggingface_hub import hf_hub_download
-
-hf_hub_download(
-    repo_id="<HF_ORG_OR_USER>/TokenDrive",
-    filename="checkpoints/best.ckpt/checkpoint/mp_rank_00_model_states.pt",
-    local_dir="pretrained",
-)
-PY
-```
-
-Expected checkpoint layout:
+## Repository map
 
 ```text
-pretrained/
-└── checkpoints/
-    └── best.ckpt/
-        ├── latest
-        └── checkpoint/
-            └── mp_rank_00_model_states.pt
+TokenDrive/
+|-- tokendrive/
+|   |-- models/              # Policy, ACM, waypoint heads, vision encoder
+|   |-- config/              # Hydra experiments and data configuration
+|   |-- dataloader/          # SimLingo-style datasets and datamodules
+|   |-- data_generation/     # Structured token label generation
+|   |-- ablation/            # Intervention analysis and result aggregation
+|   |-- callbacks/           # Training visualization
+|   |-- tools/               # Dataset and token summaries
+|   `-- train_v3.py          # Main training entry point
+|-- team_code/               # CARLA agent, planners, and controllers
+|-- pretrained/              # Checkpoint layout; weights excluded
+|-- docs/                    # Setup guide and repository visuals
+|-- start_eval_tokendrive_v3.py
+`-- environment.yaml
 ```
 
-The `pretrained/checkpoints/best.ckpt/latest` pointer file is included for DeepSpeed checkpoint loading.
+Start with [`td_v3.yaml`](tokendrive/config/experiment/td_v3.yaml) for the main experiment, [`token_drive_v3.py`](tokendrive/models/token_drive_v3.py) for the V3 loss, and [`agent_token_drive_v3.py`](team_code/agent_token_drive_v3.py) for runtime control.
 
-## Evaluation
+## License and acknowledgements
 
-Set paths for CARLA, Bench2Drive, and the checkpoint:
+TokenDrive is released under the [Apache License 2.0](LICENSE). Portions of the code are adapted from [SimLingo](https://github.com/RenzKa/simlingo); its preserved license is in [`licenses/SimLingo-LICENSE.txt`](licenses/SimLingo-LICENSE.txt). See [third-party notices](THIRD_PARTY_NOTICES.md) for attribution and external dependencies.
 
-```bash
-export TOKENDRIVE_REPO_ROOT=$PWD
-export CARLA_ROOT=/path/to/carla0915
-export TOKENDRIVE_CHECKPOINT=pretrained/checkpoints/best.ckpt
-export TOKENDRIVE_EVAL_OUTPUT=eval_output
-```
-
-Run Bench2Drive evaluation:
-
-```bash
-python start_eval_tokendrive_v3.py
-```
-
-The launcher expects Bench2Drive assets under:
-
-```text
-$TOKENDRIVE_REPO_ROOT/Bench2Drive/
-```
-
-Evaluation outputs are written to `$TOKENDRIVE_EVAL_OUTPUT`.
-
-## Ablations
-
-See [`tokendrive/ablation/README.md`](tokendrive/ablation/README.md) for ablation and token-intervention analysis commands.
-
-## Large Files
-
-Do not commit checkpoints, ONNX exports, datasets, CARLA assets, Bench2Drive assets, logs, or evaluation outputs to GitHub. GitHub blocks normal Git uploads above 100 MiB, and these artifacts are better hosted separately, for example on Hugging Face.
-
-## License
-
-This repository is released under the Apache License 2.0. See [`LICENSE`](LICENSE).
-
-TokenDrive reuses and modifies portions of the SimLingo codebase and follows its SimLingo-style data conventions. SimLingo is released under Apache License 2.0; the preserved license text is provided at [`licenses/SimLingo-LICENSE.txt`](licenses/SimLingo-LICENSE.txt), and attribution details are listed in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md). The upstream SimLingo repository is https://github.com/RenzKa/simlingo.
-
-The SimLingo dataset license is separate from the SimLingo code license. Dataset files are not redistributed in this repository.
+The SimLingo dataset has separate license terms and is not redistributed here. Model weights, simulator assets, and benchmark assets remain subject to their upstream terms.

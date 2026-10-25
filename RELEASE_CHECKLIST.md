@@ -1,11 +1,28 @@
-# TokenDrive Release Checklist
+# Release checklist
 
-1. Create a private GitHub repository named `TokenDrive`.
-2. Push this `JCDE` folder as the repository root.
-3. Upload checkpoints, ONNX exports, and large data artifacts to Hugging Face or another large-file host.
-4. Replace the placeholder URLs in `README.md` with the final GitHub and Hugging Face URLs.
-5. Confirm `licenses/SimLingo-LICENSE.txt` and `THIRD_PARTY_NOTICES.md` are present in the pushed repository.
-6. Clone the repository into a fresh folder and run the README installation, label-generation, training smoke, and evaluation commands.
-7. Tag the paper-matched release, for example `v1.0-jcde`.
-8. Switch the GitHub repository from Private to Public after the release check passes.
-9. Add the final public code/model/data links to the paper's Data Availability section.
+[Back to TokenDrive](README.md)
+
+Check items only after verifying them for the paper-matched release.
+
+## Artifacts and provenance
+
+- [ ] Upload checkpoint payloads and add their verified download URL to `README.md` and `pretrained/README.md`.
+- [ ] Record checkpoint configuration, training seed, dataset version, and upstream SimLingo commit.
+- [ ] Confirm encoder freezing and other defaults match the reported experiment.
+- [ ] Confirm `LICENSE`, `licenses/SimLingo-LICENSE.txt`, and `THIRD_PARTY_NOTICES.md` are present.
+- [ ] Keep datasets, simulator assets, benchmark assets, and weight binaries outside Git history.
+
+## Reproduction
+
+- [ ] Clone `https://github.com/jackkim777/TokenDrive.git` into a fresh directory.
+- [ ] Create the environment and configure `simlingo_base_training` using `docs/USAGE.md`.
+- [ ] Compose the V3 Hydra configuration and run label generation on a small data subset.
+- [ ] Run a GPU training smoke check and verify checkpoint loading in the evaluation agent.
+- [ ] Verify SLURM settings and complete a Bench2Drive route with the released checkpoint.
+- [ ] Confirm metrics, evaluation seeds, and ablation artifacts match the paper.
+
+## Publication
+
+- [ ] Review the rendered README, diagrams, relative links, and commands on GitHub.
+- [ ] Tag the verified commit, for example `v1.0-jcde`.
+- [ ] Add verified code, model, and dataset links to the paper's Data Availability section.
